@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sème</title>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="open-sans/open-sans.css">
+    <link rel="stylesheet" href="css/seme.css">
+    <style>
+        #debugger {
+            display: flex;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            width: 100vw;
+        }
+        .watcher_div {
+            background: #bbb;
+            color: black;
+            padding: 2px;
+            margin: 4px;
+            flex-shrink: 1;
+            min-width: 160px;
+            min-height: 160px;
+        }
+        .watcher_title {
+            text-align: center;
+        }
+        .watcher_content {
+            background: black;
+            color: #ddd;
+            white-space: pre;
+            font-size: 12px;
+            height: 100%;
+            white-space: pre;
+            word-spacing: 0.25em;
+            line-height: 1.5em;
+        }
+        #source {
+            font-family: "Open Sans";
+            white-space: pre;
+            word-spacing: 0.25em;
+            line-height: 1.5em;
+        }
+    </style>    
+</head>
+<body>
+
+<h1>Sème</h1>
+
+<div id="debugger" style="display:none">
+
+    <button onclick="sys.postMessage({order:'step'})">Step</button>
+
+
+    <div class="watcher_div">
+        <div class="watcher_title">Program</div>
+        <div class="watcher_content" id="program"></div>
+    </div>
+
+    <div class="watcher_div">
+        <div class="watcher_title">Receiver</div>
+        <div class="watcher_content" id="receiver"></div>
+    </div>
+
+    <div class="watcher_div">
+        <div class="watcher_title">Consumers</div>
+        <div class="watcher_content" id="consumers"></div>
+    </div>
+
+    <div class="watcher_div">
+        <div class="watcher_title">readySemes</div>
+        <div class="watcher_content" id="readySemes"></div>
+    </div>
+    
+    <hr>
+    <br>
+    
+</div>
+
+
+
+<div id="workspace"></div>
+
+<script src="js/enhanced-textarea.js"></script>
+
+<script src="js/interface.js"></script>
+
+
+<script>
+
+
+var sys = new Worker("js/sys.js");
+
+sys.onmessage = function(e) {
+
+    ui[e.data.action](e.data.content);
+}
+
+
+
+var debug = {
+    //turnedOn: true
+};
+
+if (debug.turnedOn) document.getElementById("debugger").style.display = "flex";
+
+window.onload = function() {
+
+    ui.initialize();
+    
+    ui.createTile({ title: "console1" });
+    ui.tiles.console1.content.output = `
+Sème v965
+Ready
+`;
+    ui.drawAll();
+    
+    document.querySelector("#tile_console1 input").focus();
+}
+
+</script>
+
+
+
+</body>
+</html>

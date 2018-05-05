@@ -1,0 +1,46 @@
+
+source
+= _ t:token* _ { return t; }
+
+
+token "token"
+= _ w:word _ { return w; }
+/ _ b:block _ { return b; }
+/ _ d:doubleQuote _ { return d; }
+
+
+_ "whitespace"
+= [ \t\r\n]*
+
+
+word "word"
+= _ c:wordChar+ _ { return c.join(''); }
+
+
+wordChar "char"
+= [^\[\]\ \t\r\n\"]
+
+
+block "block"
+= _ '[' bc:blockContent* ']' _ { return '['+bc.join('')+']'; }
+
+
+blockContent
+= innerBlock / innerContent / doubleQuote
+
+
+innerBlock
+= '[' bc:blockContent* ']' { return '['+bc.join('')+']'; }
+
+
+innerContent
+= c:innerContentChar+ { return c.join(''); }
+
+
+innerContentChar "char"
+= [^\\\[\]\"]
+/ "\\" c:. { return c; }
+
+
+doubleQuote
+= '"' c:[^"]* '"' { return '"'+c.join('')+'"'; }

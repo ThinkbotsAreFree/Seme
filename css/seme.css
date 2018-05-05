@@ -1,0 +1,145 @@
+
+
+
+
+body {
+    background: #ffffff;
+    color: #777777;
+    font-family: "Open Sans";
+    padding: 10px;
+    font-size: 16px;
+}
+
+h1 {
+    font-weight: 300
+}
+
+
+h1 {
+}
+
+
+#workspace {
+    display: flex;
+    align-items: flex-start;
+    align-content: flex-start;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+
+.column {
+    flex-grow: 0;
+    display: flex;
+    align-items: flex-start;
+    align-content: flex-start;
+    flex-wrap: wrap;
+}
+
+
+.tile {
+    margin-right: 10px;
+    margin-bottom: 10px;
+    color: white;
+    padding: 0px;
+    box-sizing: border-box;
+    border: none;
+    resize: none;
+    overflow: auto;
+    /*transition: box-shadow 0.1s;*/
+    /*transition: transform 0.1s;*/
+}
+
+.tile:hover {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    /*border: 1px solid white !important;*/
+    /*transform: translate(0px, -2px);*/
+    /*transform: scale(1.005, 1.005);*/
+}
+
+
+.output, .board, textarea {
+    overflow: auto;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: white;
+    font-family: "Open Sans";
+    font-size: 16px;
+    line-height: 26px;
+    word-spacing: 5px;
+    letter-spacing: 1px;
+}
+
+.output, .board {
+        white-space: pre-wrap;
+}
+
+
+.output {
+    height: calc( 100% - 65px );
+}
+
+
+.board {
+    height: calc( 100% - 33px );
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.title {
+    line-height: 32px;
+    padding-left: 10px;
+    padding-right: 10px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+
+textarea {
+    width: 100%;
+    height: calc( 100% - 32px );
+    resize: none;
+    border: none;
+    box-sizing: border-box;
+    display: block;
+    outline: 0px;
+}
+
+
+input[type=text] {
+    width: 100%;
+    height: 32px;
+    border: none;
+    box-sizing: border-box;
+    color: white;
+    padding-left: 10px;
+    padding-right: 10px;
+    outline: 0px;
+    word-spacing: 5px;
+    letter-spacing: 1px;
+}
+
+.icon, .boardcell img {
+    position: static;
+    max-width: 64px;
+    max-height: 64px;
+}
+
+.grid td {
+    width: 64px;
+    height: 64px;
+    border: 1px solid transparent;
+}
+
+.gridCell {
+    display: flex;
+    justify-content: center;
+    align-item: center;
+}
